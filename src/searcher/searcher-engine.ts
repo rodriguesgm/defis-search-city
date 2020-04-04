@@ -1,9 +1,10 @@
 import { Repository } from "../repository/repository";
 import { Location } from "../types/locations";
+import { FilterSearcher } from "../types/searcher"
 
 export class SearcherEngine<M> {
 
-    private readonly filters: any[] = []
+    private readonly filters: FilterSearcher[] = []
     private readonly scores: any[] = []
 
     private constructor(private repo: Repository<M>) {
@@ -14,8 +15,8 @@ export class SearcherEngine<M> {
         return engine
     }
 
-    filterBy(query: string): SearcherEngine<M> {
-        this.filters.push(query)
+    filterBy(filter: FilterSearcher): SearcherEngine<M> {
+        this.filters.push(filter)
         return this
     }
 

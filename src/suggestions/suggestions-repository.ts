@@ -1,11 +1,16 @@
-import { Repository } from "../repository/repository";
+import { Repository } from "../repository/repository"
+import suggestionsDatabase from '../repository/database'
+import { FilterSearcher } from "../types/searcher"
 
-class SuggestionModel {
-
-}
-
-export class SuggestionsRepository extends Repository<SuggestionModel> {
-    findBy(filters: any[]): SuggestionModel[] {
-        return []
+export class SuggestionsRepository extends Repository<any> {
+    findBy(filters: FilterSearcher[]): any[] {
+        let results = suggestionsDatabase
+        filters.forEach(filter => {
+            results = results.filter(r => 
+                r[filter.key] && 
+                r[filter.key].indexOf(filter.value) !== -1
+            )
+        });
+        return results
     }
 }

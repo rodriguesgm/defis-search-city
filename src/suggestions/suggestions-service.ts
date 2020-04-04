@@ -9,7 +9,7 @@ export class SuggestionsService {
     }
 
     searchSuggestions(query: string, location?: Location) {
-        const engine = SearcherEngine.instance(this.repository).filterBy(query)
+        const engine = SearcherEngine.instance(this.repository).filterBy({ key: 'name', value: query})
         if (location) {
             engine.scoredBy(location)
         }
