@@ -11,6 +11,14 @@ export class SuggestionsController {
         // empty constructor
     }
 
+    /**
+     * GET method to return suggestions based on the query param and sorted by
+     * the score param.
+     * Possible params:
+     *  q: Name of the city (required)
+     *  lat and lng: Latitude and longitude to be applied in the score system
+     * @param req
+     */
     getSuggestions(req) {
         const params = req.query || {}
         const query = params.q

@@ -1,4 +1,6 @@
-
+/**
+ * Simulates a database in memory.
+ */
 const allCities = [
     {
       "id": "5881791",
