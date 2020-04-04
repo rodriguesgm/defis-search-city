@@ -61,12 +61,11 @@ export class SearcherEngine<M> {
             return items
         }
         let scoredItems = items
-        // TODO - fix overriding scores
         this.scores.forEach((s: SearcherParam) => {
             scoredItems = scoredItems.map(item => {
-                let scorePoint = 0
+                let scorePoint = item.score || 0
                 if (s.key === 'location') {
-                    scorePoint = new LocationScore().calculateLocationScore(
+                    scorePoint += new LocationScore().calculateLocationScore(
                         item,
                         s.value
                     )
@@ -77,6 +76,10 @@ export class SearcherEngine<M> {
                 }
             })
         })
-        return scoredItems
+        return scoredItems.map(scoredItem => ({
+            ...scoredItem,
+            // calc the medium of the scores
+            score: scoredItem.score / this.scores.length
+        })
     }
 }
