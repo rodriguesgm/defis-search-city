@@ -8,7 +8,7 @@ import { BadRequest } from "../types/errors";
 export class SuggestionsController {
 
     constructor(private service: SuggestionsService = new SuggestionsService()) {
-
+        // empty constructor
     }
 
     getSuggestions(req) {

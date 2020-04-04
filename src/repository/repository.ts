@@ -1,5 +1,5 @@
-import { FilterSearcher } from "../types/searcher"
+import { SearcherParam, SearchableItem } from "../types/searcher"
 
 export abstract class Repository<M> {
-    abstract findBy(filters: FilterSearcher[]): M[];
+    abstract findSearchableBy(filters: SearcherParam[]): SearchableItem[];
 }

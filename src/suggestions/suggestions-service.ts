@@ -5,14 +5,18 @@ import { Location } from "../types/locations";
 export class SuggestionsService {
 
     constructor(private repository: SuggestionsRepository = new SuggestionsRepository()) {
-
+        // empty constructor
     }
 
     searchSuggestions(query: string, location?: Location) {
-        const engine = SearcherEngine.instance(this.repository).filterBy({ key: 'name', value: query})
+        const engine = SearcherEngine
+            .instance(this.repository)
+            .filterBy({ key: 'name', value: query})
+
         if (location) {
-            engine.scoredBy(location)
+            engine.scoredBy({ key: 'location', value: location})
         }
+
         return engine.execute()
     }
 }

@@ -1,9 +1,9 @@
 import { Repository } from "../repository/repository"
 import suggestionsDatabase from '../repository/database'
-import { FilterSearcher } from "../types/searcher"
+import { SearcherParam, SearchableItem } from "../types/searcher"
 
 export class SuggestionsRepository extends Repository<any> {
-    findBy(filters: FilterSearcher[]): any[] {
+    findSearchableBy(filters: SearcherParam[]): SearchableItem[] {
         let results = suggestionsDatabase
         filters.forEach(filter => {
             results = results.filter(r => 
@@ -11,6 +11,11 @@ export class SuggestionsRepository extends Repository<any> {
                 r[filter.key].indexOf(filter.value) !== -1
             )
         });
-        return results
+        return results.map(r => ({
+                name: r.name,
+                latitude: Number(r.lat),
+                longitude: Number(r.long)
+            }
+        ))
     }
 }
