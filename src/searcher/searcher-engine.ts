@@ -66,7 +66,7 @@ export class SearcherEngine<M> {
                 let scorePoint = item.score || 0
                 if (s.key === 'location') {
                     scorePoint += new LocationScore().calculateLocationScore(
-                        item,
+                        { latitude: item.latitude, longitude: item.longitude },
                         s.value
                     )
                 }
@@ -80,6 +80,6 @@ export class SearcherEngine<M> {
             ...scoredItem,
             // calc the medium of the scores
             score: scoredItem.score / this.scores.length
-        })
+        }))
     }
 }

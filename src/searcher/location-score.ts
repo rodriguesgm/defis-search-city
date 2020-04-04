@@ -8,7 +8,7 @@ export class LocationScore {
     
     calculateLocationScore(itemLocation: Location, scoreLocation: Location) {
         const distanceKm = this.getDistanceFromLatLonInKm(
-            location.latitude, location.longitude,
+            itemLocation.latitude, itemLocation.longitude,
             scoreLocation.latitude, scoreLocation.longitude);
         let score = 1000 - distanceKm;
         score = score > 0 ? Math.round(score/10) / 100 : 0;
