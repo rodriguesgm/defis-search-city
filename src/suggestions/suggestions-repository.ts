@@ -22,6 +22,7 @@ export class SuggestionsRepository extends Repository<any> {
         });
         return results.map(r => ({
                 name: r.name,
+                country: r.country,
                 latitude: Number(r.lat),
                 longitude: Number(r.long)
             }

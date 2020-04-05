@@ -6,6 +6,7 @@ export interface SearcherParam {
 
 export interface SearchableItem {
     name: string
+    country: string
     score?: number
     latitude?: number
     longitude?: number
