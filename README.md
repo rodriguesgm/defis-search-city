@@ -33,6 +33,8 @@ With the filtered results, the engine can apply the scores params and order the 
 
 ## Tests
 
+### Unit
+ 
 For the tests I use [Sinon](expectedResult), [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/). I can't really discuss why them and not others, it's just because I'm used to them in the projects I worked.
 
 Tu run the tests:
@@ -41,6 +43,10 @@ npm run test
 ```
 
 The tests structure and file names respect the same structure as the code
+
+### Integration
+
+No integration/acceptance test were created
 
 ## Improvements to be considered
 [1] - The application has only one route, so it's pretty simple but what about if we need to add more routes. Would it be possible to divide it into multiple files to have a better division of the routes? Also, is there a way to map directly in the controller my routes and also the possible parameters it has?
