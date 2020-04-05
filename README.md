@@ -114,3 +114,77 @@ No integration/acceptance test were created
    }
 ]
 ```
+
+### Filtering by query and score lat/log
+
+- Url: http://localhost:8080/suggestions?q=London&latitude=43.70011&longitude=-79.4163
+
+```json
+[
+   {
+      "score":0.83,
+      "name":"London",
+      "country":"CA",
+      "latitude":42.98339,
+      "longitude":-81.23304
+   },
+   {
+      "score":0.46,
+      "name":"London",
+      "country":"US",
+      "latitude":39.88645,
+      "longitude":-83.44825
+   },
+   {
+      "score":0.42,
+      "name":"Londontowne",
+      "country":"US",
+      "latitude":38.93345,
+      "longitude":-76.54941
+   },
+   {
+      "score":0.35,
+      "name":"New London",
+      "country":"US",
+      "latitude":41.35565,
+      "longitude":-72.09952
+   },
+   {
+      "score":0.34,
+      "name":"Londonderry",
+      "country":"US",
+      "latitude":42.86509,
+      "longitude":-71.37395
+   },
+   {
+      "score":0.25,
+      "name":"New London",
+      "country":"US",
+      "latitude":44.39276,
+      "longitude":-88.73983
+   },
+   {
+      "score":0.17,
+      "name":"London",
+      "country":"US",
+      "latitude":37.12898,
+      "longitude":-84.08326
+   }
+]
+```
+
+### Filtering by query and country and score lat/log
+
+- Url: http://localhost:8080/suggestions?q=London&latitude=43.70011&longitude=-79.4163&country=CA
+
+```json
+[
+   {
+      "score":0.83,
+      "name":"London",
+      "country":"CA",
+      "latitude":42.98339,
+      "longitude":-81.23304
+   }
+]
+```
