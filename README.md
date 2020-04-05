@@ -61,3 +61,56 @@ No integration/acceptance test were created
 [3] - This problems seems to be a good one to use some solution like Elastic Search. We need to filter some entries based on a text param, so we should probably not consider some typu mistake, grammar, etc, and we need to order/classify them based on a score considering others filters. I've already worked with Elastic Search in the past and it was pretty good doing something like this, but, it's had to configure and I never did it by myself from scratch, so it would take me some good days.
 
 [4] - Should definitely add more tests to cover the main class like searcher and location score. What I did was wrong, created all the class and then adding tests. I should used a better approach like TDD or at least adding tests for each class/methods before continue the implementation of the next class, but I left everything for the end :(
+
+## Results
+
+### Only filter by query
+
+- Url: http://localhost:8080/suggestions?q=London
+
+```json
+[
+   {
+      "name":"London",
+      "country":"CA",
+      "latitude":42.98339,
+      "longitude":-81.23304
+   },
+   {
+      "name":"London",
+      "country":"US",
+      "latitude":37.12898,
+      "longitude":-84.08326
+   },
+   {
+      "name":"Londontowne",
+      "country":"US",
+      "latitude":38.93345,
+      "longitude":-76.54941
+   },
+   {
+      "name":"London",
+      "country":"US",
+      "latitude":39.88645,
+      "longitude":-83.44825
+   },
+   {
+      "name":"New London",
+      "country":"US",
+      "latitude":41.35565,
+      "longitude":-72.09952
+   },
+   {
+      "name":"Londonderry",
+      "country":"US",
+      "latitude":42.86509,
+      "longitude":-71.37395
+   },
+   {
+      "name":"New London",
+      "country":"US",
+      "latitude":44.39276,
+      "longitude":-88.73983
+   }
+]
+```
