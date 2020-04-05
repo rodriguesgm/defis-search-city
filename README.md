@@ -42,7 +42,7 @@ Tu run the tests:
 npm run test
 ```
 
-The tests structure and file names respect the same structure as the code
+The tests structure and file names respect the same structure as the code. [4]
 
 ### Integration
 
@@ -54,3 +54,5 @@ No integration/acceptance test were created
 [2] - Of course an in memory array is not good, so the suggestions should be probably keep in a database. If it's should be relational or nosql, that'll depend on the other requirements of the system. For the information we have now, probably a NoSql DB would be good.
 
 [3] - This problems seems to be a good one to use some solution like Elastic Search. We need to filter some entries based on a text param, so we should probably not consider some typu mistake, grammar, etc, and we need to order/classify them based on a score considering others filters. I've already worked with Elastic Search in the past and it was pretty good doing something like this, but, it's had to configure and I never did it by myself from scratch, so it would take me some good days.
+
+[4] - Should definitely add more tests to cover the main class like searcher and location score. What I did was wrong, created all the class and then adding tests. I should used a better approach like TDD or at least adding tests for each class/methods before continue the implementation of the next class, but I left everything for the end :(
