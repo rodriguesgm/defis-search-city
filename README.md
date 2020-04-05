@@ -25,11 +25,16 @@ The files are distributed in folder per "feature". So we have one folder "sugges
 
 I didn't use any database or storage lib to store the suggestions (cities). Instead, I created a huge in memory array in a separated file. This was just a matter to gain some velocity in the challenge, some other solutions are described in [2]
 
+The cities was exported from [this file](https://github.com/busbud/coding-challenge-backend-c/blob/master/data/cities_canada-usa.tsv), I only converted it to a javascript array of objects instead of tsv.
+
 ### Search filters and score system
 
-So, there are some solutions for that described in [3], but like in the description of the challenge, I decided to implement one by myself to have more code to present. The idea is to have an engine which can be configured with the filters to eliminate some results, e.g. we don't want to return suggestions for Quebec if the user is querying by Vancouver, right? So the filters of the engine works for this purpose. And also, we can configure the engine with some score params, that will not filter the result, but used to calculate the score so they can be ordered by this score.
+So, there are some solutions for that described in [3], but like in the description of the challenge, I decided to implement one by myself to have more code to present. The idea is to have an engine which can be configured with the filters to eliminate some results, e.g. we don't want to return suggestions for Quebec if the user is querying by Vancouver, right? So the filters of the engine works for this purpose. And also, we can configure the engine with some score params, that will not filter the result but be used to calculate the score so they can be ordered by this score.
 This engine class receives a repository instance. The repository is the class responsible to fetch the items from where they are stored and apply the filters. In this solution, the repository takes the data from the in memory array, filter them based on the filters configured in the search engine and return them to the engine.
 With the filtered results, the engine can apply the scores params and order the items to return them for the service.
+
+For the problem, I'm implemented the filter by query (name of the city. I considered the property ascii of the object in the database, just to disconsider accents and cases). I also added an extra filter by country to demonstrate how easy it is to add a new filter.
+For the score classification, I implemented the lat/long score, and to add a new one is just as easy like adding a new filter. When passing two properties to be considered in the score, the final score will be the average of the two properties score.
 
 ## Tests
 

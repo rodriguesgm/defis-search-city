@@ -14,16 +14,25 @@ export class SuggestionsService {
     /**
      * Seach all suggestions using the params passed.
      * The locations is used to score the suggestions by proximity
-     * @param query Name of the city to filter
-     * @param location Lat/lng to order the cities near this locatoin
+     * @param filters Filters to apply in the query. 
+     *  query: name ignoring accents
+     *  country: Country in two letters abbreviation
+     * @param scores Scores to classify and sort the results
+     *  Lat/lng to order the cities near this locatoin
      */
-    searchSuggestions(query: string, location?: Location) {
+    searchSuggestions(filters: { query: string, country?: string }, scores?: { location?: Location }) {
         const engine = SearcherEngine
             .instance(this.repository)
-            .filterBy({ key: 'name', value: query})
+            .filterBy({ key: 'ascii', value: filters.query})
+        
+        if (filters.country) {
+            engine.filterBy({ key: 'country', value: filters.country})
+        }
 
-        if (location) {
-            engine.scoredBy({ key: 'location', value: location})
+        if (scores) {
+            if (scores.location) {
+                engine.scoredBy({ key: 'location', value: scores.location})
+            }
         }
 
         return engine.execute()

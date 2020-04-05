@@ -29,7 +29,12 @@ describe('suggestions-controller', function() {
       })
 
       expect(service.searchSuggestions.callCount).to.be.eq(1)
-      expect(service.searchSuggestions.firstCall.args).to.be.deep.eq(['London', null])
+      expect(service.searchSuggestions.firstCall.args).to.be.deep.eq([{
+          query: 'London',
+          country: undefined
+        }, {
+          location: null
+        }])
     })
 
     it('calls service with query and location', () => {
@@ -38,9 +43,14 @@ describe('suggestions-controller', function() {
       })
 
       expect(service.searchSuggestions.callCount).to.be.eq(1)
-      expect(service.searchSuggestions.firstCall.args).to.be.deep.eq(['London', {
-        latitude: -14,
-        longitude: -15
+      expect(service.searchSuggestions.firstCall.args).to.be.deep.eq([{
+        query: 'London',
+        country: undefined
+      }, {
+        location: {
+          latitude: -14,
+          longitude: -15
+        }
       }])
     })
 

@@ -26,19 +26,25 @@ describe('suggestions-service', () => {
     })
 
     it('set the query filter', () => {
-        service.searchSuggestions('London')
+        service.searchSuggestions({
+            query: 'London'
+        })
         
         expect(engine.filterBy.firstCall.args).to.be.deep.eq([{
-            key: 'name',
+            key: 'ascii',
             value: 'London'
         }])
         expect(engine.scoredBy.notCalled).to.be.true
     })
 
     it('set the location score when defined', () => {
-        service.searchSuggestions('London', {
-            latitude: -14,
-            longitude: -15
+        service.searchSuggestions({
+            query: 'London'
+        }, {
+            location: {
+                latitude: -14,
+                longitude: -15
+            }
         })
         
         expect(engine.scoredBy.firstCall.args).to.be.deep.eq([{

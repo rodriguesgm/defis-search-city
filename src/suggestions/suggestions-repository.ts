@@ -17,7 +17,7 @@ export class SuggestionsRepository extends Repository<any> {
         filters.forEach(filter => {
             results = results.filter(r => 
                 r[filter.key] && 
-                r[filter.key].indexOf(filter.value) !== -1
+                r[filter.key].toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
             )
         });
         return results.map(r => ({

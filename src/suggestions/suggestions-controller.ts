@@ -34,8 +34,11 @@ export class SuggestionsController {
             }
         }
 
-        return this.service.searchSuggestions(
-            query, location
-        )
+        return this.service.searchSuggestions({
+            query,
+            country: params.country
+        }, {
+            location
+        })
     }
 }
